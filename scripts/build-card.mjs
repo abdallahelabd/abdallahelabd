@@ -9,6 +9,9 @@ import { mkdirSync, writeFileSync } from "node:fs";
 const USER = process.env.GITHUB_USER || "abdallahelabd";
 const TOKEN = process.env.GITHUB_TOKEN;
 const CODING_SINCE = 2020;
+// Below this many contributions in the last year, the stats section is left out.
+// Private work only counts once "Include private contributions on my profile" is on.
+const MIN_CONTRIBUTIONS_TO_SHOW = 50;
 
 const ART = String.raw`
  .--------------------------------.
@@ -119,7 +122,7 @@ function mockStats() {
     const date = new Date(start + i * 86400000).toISOString().slice(0, 10);
     days.push({ date, contributionCount: (i * 7) % 5 === 0 ? 0 : (i * 13) % 11 });
   }
-  return summarize(days, { yearTotal: 1384, allTime: 4120, followers: 12, memberSince: 2020 });
+  return summarize(days, { yearTotal: Number(process.env.MOCK_TOTAL || 1384), allTime: 4120, followers: 12, memberSince: 2020 });
 }
 
 const fmt = (n) => Number(n).toLocaleString("en-US");
@@ -146,11 +149,15 @@ function rows(stats) {
     { key: "Web", value: "abdallah.cv" },
     { key: "X", value: "@abdallahelabd05" },
     { key: "Chat", value: 'abdallah.cv, then type "chat"' },
-    { kind: "gap" },
-    { kind: "section", text: "GitHub Stats" },
-    { pair: [["Contributions (1y)", fmt(stats.yearTotal)], ["Active days", fmt(stats.activeDays)]] },
-    { pair: [["Current streak", `${stats.current}d`], ["Longest", `${stats.longest}d`]] },
-    { pair: [["All-time", fmt(stats.allTime)], ["Best day", fmt(stats.bestDay)]] },
+    ...(stats.yearTotal >= MIN_CONTRIBUTIONS_TO_SHOW
+      ? [
+          { kind: "gap" },
+          { kind: "section", text: "GitHub Stats" },
+          { pair: [["Contributions (1y)", fmt(stats.yearTotal)], ["Active days", fmt(stats.activeDays)]] },
+          { pair: [["Current streak", `${stats.current}d`], ["Longest", `${stats.longest}d`]] },
+          { pair: [["All-time", fmt(stats.allTime)], ["Best day", fmt(stats.bestDay)]] },
+        ]
+      : []),
     { kind: "gap" },
     { kind: "palette" },
   ];
