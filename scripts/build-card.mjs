@@ -21,10 +21,10 @@ const ART = String.raw`
  | |  abdallah elabd            | |
  | |                            | |
  | |  $ cat skills.txt          | |
- | |  python  c++  js  solidity | |
- | |  react  firebase  figma    | |
+ | |  react  next  flutter  ai  | |
+ | |  supabase  docker  solana  | |
  | |                            | |
- | |  $ ./launch --startup      | |
+ | |  $ ./launch --app madmoon  | |
  | |  [##################] 100% | |
  | |  shipped 5+ startups       | |
  | |                            | |
@@ -133,17 +133,20 @@ function rows(stats) {
   return [
     { kind: "title", text: `${USER}@github` },
     { kind: "rule" },
-    { key: "OS", value: "Freelancer, Startup Founder" },
+    { key: "OS", value: "Full-Stack, Mobile & AI Developer" },
     { key: "Uptime", value: `${years} years (coding since ${CODING_SINCE})` },
     { key: "Host", value: "abdallah.cv" },
-    { key: "Kernel", value: "Python, C++, JavaScript" },
-    { key: "Shell", value: "React, Firebase, Tailwind CSS" },
-    { key: "Contracts", value: "Solidity, Blockchain" },
-    { key: "Design", value: "Figma, Photoshop, Illustrator" },
-    { key: "Video", value: "Premiere Pro" },
-    { key: "Marketing", value: "Facebook Ads, X, Google Ads" },
-    { key: "Startups", value: "5+ launched in 3 fields" },
-    { key: "Languages.Real", value: "Arabic, English" },
+    { key: "Kernel", value: "JavaScript, TypeScript, Python, Dart" },
+    { key: "Shell", value: "React, Next.js, Node.js, Tailwind CSS" },
+    { key: "Mobile", value: "Flutter, React Native, Expo" },
+    { key: "AI", value: "Agents, OpenAI, Claude, Gemini, MCP, n8n" },
+    { key: "Data", value: "Supabase, Firebase, PostgreSQL, Redis" },
+    { key: "DevOps", value: "Docker, GitHub Actions, Vercel, AWS" },
+    { key: "Web3", value: "Solana, Solidity, NFTs, OpenZeppelin" },
+    { key: "Design", value: "Photoshop, Illustrator, After Effects" },
+    { key: "Marketing", value: "Meta, Google, TikTok and X Ads" },
+    { key: "Shipped", value: "5+ startups, 35+ websites, Madmoon" },
+    { key: "Languages.Real", value: "Arabic, English, Spanish, Italian" },
     { kind: "gap" },
     { kind: "section", text: "Contact" },
     { key: "Web", value: "abdallah.cv" },
